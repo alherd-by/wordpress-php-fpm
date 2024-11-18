@@ -11,6 +11,8 @@ RUN docker-php-ext-install \
         sockets \
         intl zip gd bcmath bz2 mbstring xml
 
+RUN set -xe && echo "pm.status_path = /status" >> /usr/local/etc/php-fpm.d/zz-docker.conf
+
 RUN curl --show-error https://getcomposer.org/installer | \
     php -- --install-dir=/usr/bin/ --filename=composer && \
     composer clear-cache
